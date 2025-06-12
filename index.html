@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wangui Nancy Kairo | Counseling Psychologist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+        
+        .certificate-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .certificate-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-200 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black border-b border-yellow-600 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-yellow-500 text-2xl font-bold">WK</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-yellow-500 hover:text-yellow-300 transition">About</a>
+                <a href="#achievements" class="text-yellow-500 hover:text-yellow-300 transition">Achievements</a>
+                <a href="#certificates" class="text-yellow-500 hover:text-yellow-300 transition">Certificates</a>
+                <a href="#gallery" class="text-yellow-500 hover:text-yellow-300 transition">Gallery</a>
+                <a href="#contact" class="text-yellow-500 hover:text-yellow-300 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-yellow-500 focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-black border-t border-yellow-600" id="mobile-menu">
+            <div class="container mx-auto px-6 py-3 flex flex-col space-y-3">
+                <a href="#about" class="text-yellow-500 hover:text-yellow-300 transition">About</a>
+                <a href="#achievements" class="text-yellow-500 hover:text-yellow-300 transition">Achievements</a>
+                <a href="#certificates" class="text-yellow-500 hover:text-yellow-300 transition">Certificates</a>
+                <a href="#gallery" class="text-yellow-500 hover:text-yellow-300 transition">Gallery</a>
+                <a href="#contact" class="text-yellow-500 hover:text-yellow-300 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-black py-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex flex-col items-start animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold text-yellow-500 mb-4 delay-100">WANGUI  KAIRO</h1>
+                <h2 class="text-xl md:text-2xl text-yellow-400 mb-6 delay-200"> Psychologist</h2>
+                <p class="text-gray-300 mb-8 text-lg delay-300">Third-year student at Kisii University passionate about mental health awareness and youth counseling.</p>
+                <a href="#contact" class="bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-3 px-6 rounded-full transition delay-400">Get In Touch</a>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center animate-fade-in delay-200">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-yellow-500 shadow-lg">
+                    <!-- Replace with actual profile image -->
+                    <img src="images/profile.jpg" 
+                         alt="Wangui Nancy Kairo" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="fill-current text-yellow-600">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12 text-center animate-fade-in">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-fade-in delay-100">
+                    <h3 class="text-2xl text-yellow-400 mb-4">My Journey</h3>
+                    <p class="text-gray-300 mb-4">As a third-year Counseling Psychology student at Kisii University, I am deeply passionate about mental health advocacy and providing support to individuals navigating life's challenges.</p>
+                    <p class="text-gray-300 mb-4">My academic journey has equipped me with theoretical knowledge and practical skills in psychological assessment, therapeutic interventions, and mental health promotion.</p>
+                    <p class="text-gray-300">I believe in a client-centered approach that respects individual differences and empowers clients to discover their own solutions.</p>
+                </div>
+                <div class="md:w-1/2 bg-yellow-900 bg-opacity-30 p-8 rounded-lg border border-yellow-600 animate-fade-in delay-200">
+                    <h3 class="text-2xl text-yellow-400 mb-6">Skills & Expertise</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-yellow-300 mb-1">Active Listening</h4>
+                            <div class="w-full bg-black rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-yellow-300 mb-1">Psychological Assessment</h4>
+                            <div class="w-full bg-black rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-yellow-300 mb-1">Crisis Intervention</h4>
+                            <div class="w-full bg-black rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-yellow-300 mb-1">Group Counseling</h4>
+                            <div class="w-full bg-black rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-yellow-300 mb-1">Mental Health Education</h4>
+                            <div class="w-full bg-black rounded-full h-2.5">
+                                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-20 bg-yellow-900 bg-opacity-10">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12 text-center animate-fade-in">My Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Achievement 1 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-100">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Academic Excellence</h3>
+                    <p class="text-gray-300">Maintained a first-class performance throughout my studies at Kisii University, earning recognition on the Dean's List for three consecutive semesters.</p>
+                </div>
+                
+                <!-- Achievement 2 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-200">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Peer Counseling Leader</h3>
+                    <p class="text-gray-300">Founded and led the university's peer counseling program, training 20 students to provide basic counseling support to fellow students.</p>
+                </div>
+                
+                <!-- Achievement 3 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-300">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Mental Health Speaker</h3>
+                    <p class="text-gray-300">Invited as a speaker at 5 high schools to discuss mental health awareness and stress management techniques for students.</p>
+                </div>
+                
+                <!-- Achievement 4 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-100">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Research Publication</h3>
+                    <p class="text-gray-300">Co-authored a research paper on "The Impact of Social Media on Adolescent Mental Health" published in the university's psychology journal.</p>
+                </div>
+                
+                <!-- Achievement 5 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-200">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Community Outreach</h3>
+                    <p class="text-gray-300">Organized and participated in 3 mental health awareness campaigns in rural communities, reaching over 500 individuals.</p>
+                </div>
+                
+                <!-- Achievement 6 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition animate-fade-in delay-300">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Student Leadership Award</h3>
+                    <p class="text-gray-300">Received the Department of Psychology's Student Leadership Award for outstanding contribution to student welfare and mental health advocacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12 text-center animate-fade-in">Certificates</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certificate 1 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition cursor-pointer gallery-item animate-fade-in delay-100" onclick="openModal('cert1')">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Basic Counseling Skills</h3>
+                    <p class="text-gray-300 mb-4">Kenya Counseling Association, 2022</p>
+                    <div class="h-40 bg-yellow-900 bg-opacity-30 rounded flex items-center justify-center">
+                        <span class="text-yellow-500">Click to view certificate</span>
+                    </div>
+                </div>
+                
+                <!-- Certificate 2 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition cursor-pointer gallery-item animate-fade-in delay-200" onclick="openModal('cert2')">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Mental Health First Aid</h3>
+                    <p class="text-gray-300 mb-4">Ministry of Health Kenya, 2021</p>
+                    <div class="h-40 bg-yellow-900 bg-opacity-30 rounded flex items-center justify-center">
+                        <span class="text-yellow-500">Click to view certificate</span>
+                    </div>
+                </div>
+                
+                <!-- Certificate 3 -->
+                <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-yellow-600 hover:border-yellow-400 transition cursor-pointer gallery-item animate-fade-in delay-300" onclick="openModal('cert3')">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="text-xl text-yellow-400 mb-2">Youth Counseling Specialist</h3>
+                    <p class="text-gray-300 mb-4">African Psychological Association, 2023</p>
+                    <div class="h-40 bg-yellow-900 bg-opacity-30 rounded flex items-center justify-center">
+                        <span class="text-yellow-500">Click to view certificate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Certificate Modals -->
+        <div id="cert1" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('cert1')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-8">
+                    <h3 class="text-2xl text-yellow-400 mb-2">Basic Counseling Skills</h3>
+                    <p class="text-gray-300 mb-6">Kenya Counseling Association, 2022</p>
+                    <div class="bg-yellow-900 bg-opacity-20 p-4 rounded border border-yellow-600">
+                        <img src="https://via.placeholder.com/800x600?text=Certificate+Image" alt="Basic Counseling Skills Certificate" class="w-full h-auto">
+                    </div>
+                    <p class="text-gray-300 mt-4">This certificate recognizes completion of 60 hours of training in basic counseling techniques, active listening, and ethical considerations in counseling practice.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="cert2" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('cert2')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-8">
+                    <h3 class="text-2xl text-yellow-400 mb-2">Mental Health First Aid</h3>
+                    <p class="text-gray-300 mb-6">Ministry of Health Kenya, 2021</p>
+                    <div class="bg-yellow-900 bg-opacity-20 p-4 rounded border border-yellow-600">
+                        <img src="https://via.placeholder.com/800x600?text=Certificate+Image" alt="Mental Health First Aid Certificate" class="w-full h-auto">
+                    </div>
+                    <p class="text-gray-300 mt-4">Certified in Mental Health First Aid, equipped to provide initial help to people experiencing mental health problems or crises.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="cert3" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('cert3')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-8">
+                    <h3 class="text-2xl text-yellow-400 mb-2">Youth Counseling Specialist</h3>
+                    <p class="text-gray-300 mb-6">African Psychological Association, 2023</p>
+                    <div class="bg-yellow-900 bg-opacity-20 p-4 rounded border border-yellow-600">
+                        <img src="https://via.placeholder.com/800x600?text=Certificate+Image" alt="Youth Counseling Specialist Certificate" class="w-full h-auto">
+                    </div>
+                    <p class="text-gray-300 mt-4">Specialized training in adolescent psychology, youth counseling techniques, and developmental challenges specific to African youth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-yellow-900 bg-opacity-10">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12 text-center animate-fade-in">Gallery</h2>
+            
+            <div class="mb-8">
+                <h3 class="text-2xl text-yellow-400 mb-6 text-center animate-fade-in delay-100">Photos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Photo 1 -->
+                    <div class="gallery-item rounded-lg overflow-hidden cursor-pointer animate-fade-in delay-100" onclick="openModal('photo1')">
+                        <img src="images/g3.jpg" 
+                             alt="Counseling session" 
+                             class="w-full h-48 object-cover">
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">University Counseling Workshop</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 2 -->
+                    <div class="gallery-item rounded-lg overflow-hidden cursor-pointer animate-fade-in delay-150" onclick="openModal('photo2')">
+                        <img src="images/g1.jpg" 
+                             alt="Group discussion" 
+                             class="w-full h-48 object-cover">
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">Peer Counseling Training</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 3 -->
+                    <div class="gallery-item rounded-lg overflow-hidden cursor-pointer animate-fade-in delay-200" onclick="openModal('photo3')">
+                        <img src="images/g2.jpg" 
+                             alt="Community outreach" 
+                             class="w-full h-48 object-cover">
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">Community Mental Health Day</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 4 -->
+                    <div class="gallery-item rounded-lg overflow-hidden cursor-pointer animate-fade-in delay-250" onclick="openModal('photo4')">
+                        <img src="images/g4.jpg" 
+                             alt="Award ceremony" 
+                             class="w-full h-48 object-cover">
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">Student Leadership Award</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl text-yellow-400 mb-6 text-center animate-fade-in delay-300">Videos</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Video 1 -->
+                    <div class="gallery-item rounded-lg overflow-hidden animate-fade-in delay-300">
+                        <div class="relative pb-[56.25%] bg-black">
+                            <iframe class="absolute top-0 left-0 w-full h-full" 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">Mental Health Awareness Talk</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="gallery-item rounded-lg overflow-hidden animate-fade-in delay-350">
+                        <div class="relative pb-[56.25%] bg-black">
+                            <iframe class="absolute top-0 left-0 w-full h-full" 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-black bg-opacity-70 p-3">
+                            <p class="text-yellow-400">Stress Management Workshop</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photo Modals -->
+        <div id="photo1" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('photo1')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-4">
+                    <img src="images/g3.jpg" 
+                         alt="University Counseling Workshop" 
+                         class="w-full h-auto max-h-[80vh] object-contain">
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-20 rounded">
+                        <h4 class="text-xl text-yellow-400">University Counseling Workshop</h4>
+                        <p class="text-gray-300">Facilitating a workshop on stress management techniques for fellow students at Kisii University.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="photo2" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('photo2')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-4">
+                    <img src="images/g1.jpg" 
+                         alt="Peer Counseling Training" 
+                         class="w-full h-auto max-h-[80vh] object-contain">
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-20 rounded">
+                        <h4 class="text-xl text-yellow-400">Peer Counseling Training</h4>
+                        <p class="text-gray-300">Training fellow students in basic peer counseling techniques as part of the university's mental health initiative.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="photo3" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('photo3')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-4">
+                    <img src="images/g2.jpg" 
+                         alt="Community Mental Health Day" 
+                         class="w-full h-auto max-h-[80vh] object-contain">
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-20 rounded">
+                        <h4 class="text-xl text-yellow-400">Community Mental Health Day</h4>
+                        <p class="text-gray-300">Participating in a community outreach program to raise mental health awareness in rural areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="photo4" class="certificate-modal fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+            <div class="bg-black max-w-4xl w-full rounded-lg border-2 border-yellow-500 relative">
+                <button onclick="closeModal('photo4')" class="absolute top-4 right-4 text-yellow-500 text-2xl hover:text-yellow-300">&times;</button>
+                <div class="p-4">
+                    <img src="images/g4.jpg" 
+                         alt="Student Leadership Award" 
+                         class="w-full h-auto max-h-[80vh] object-contain">
+                    <div class="mt-4 p-4 bg-yellow-900 bg-opacity-20 rounded">
+                        <h4 class="text-xl text-yellow-400">Student Leadership Award</h4>
+                        <p class="text-gray-300">Receiving the Department of Psychology's Student Leadership Award for outstanding contribution to student welfare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-12 text-center animate-fade-in">Get In Touch</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-fade-in delay-100">
+                    <h3 class="text-2xl text-yellow-400 mb-6">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-yellow-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-yellow-300">Email</h4>
+                                <p class="text-gray-300">wanguikairo005@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-yellow-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-yellow-300">Phone</h4>
+                                <p class="text-gray-300">+254 796257636</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-yellow-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-yellow-300">Location</h4>
+                                <p class="text-gray-300">Kisii University, Psychology Department</p>
+                                <p class="text-gray-300">P.O. Box 408-40200, Kisii, Kenya</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl text-yellow-400 mt-10 mb-6">Connect With Me</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.linkedin.com/in/wangui-kairo-234045298?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-yellow-500 hover:text-yellow-300 text-2xl transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-300 text-2xl transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-300 text-2xl transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-300 text-2xl transition">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+               <div class="md:w-1/2 animate-fade-in delay-200">
+                <form 
+                    action="https://formspree.io/f/xnnvjpwe" 
+                    method="POST"
+                    enctype="application/json"
+                    class="bg-yellow-900 bg-opacity-20 p-8 rounded-lg border border-golden"
+                >
+                    
+                    
+                    <div class="mb-6">
+                        <label for="name" class="block text-yellow-400 mb-2">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            required
+                            class="w-full px-4 py-2 bg-black bg-opacity-70 border border-golden rounded focus:outline-none focus:border-yellow-400 text-gray-200"
+                        >
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-yellow-400 mb-2">Your Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            required
+                            class="w-full px-4 py-2 bg-black bg-opacity-70 border border-golden rounded focus:outline-none focus:border-yellow-400 text-gray-200"
+                        >
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-yellow-400 mb-2">Subject</label>
+                        <input 
+                            type="text" 
+                            id="subject" 
+                            name="subject"
+                            required
+                            class="w-full px-4 py-2 bg-black bg-opacity-70 border border-golden rounded focus:outline-none focus:border-yellow-400 text-gray-200"
+                        >
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-yellow-400 mb-2">Your Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message"
+                            rows="5" 
+                            required
+                            class="w-full px-4 py-2 bg-black bg-opacity-70 border border-golden rounded focus:outline-none focus:border-yellow-400 text-gray-200"
+                        ></textarea>
+                    </div>
+                    <button 
+                        type="submit" 
+                        class="bg-golden hover:bg-yellow-700 text-black font-bold py-3 px-6 rounded-full transition w-full md:w-auto"
+                    >
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-yellow-600 py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold text-yellow-500">WANGUI NANCY KAIRO</h2>
+                    <p class="text-gray-400">Counseling Psychologist</p>
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="text-gray-400 mb-2">© 2023 All Rights Reserved</p>
+                    <p class="text-gray-400">Kisii University - Department of Psychology</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Modal functions
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside content
+        document.querySelectorAll('.certificate-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
